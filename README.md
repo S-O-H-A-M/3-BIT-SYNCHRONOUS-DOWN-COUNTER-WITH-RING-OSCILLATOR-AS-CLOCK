@@ -143,7 +143,7 @@ endmodule
 ## Steps to run this project
 1. Open a new terminal
 2. Clone this project using the following command:</br>
-```git clone https://github.com/S-O-H-A-M/2x1-Multiplexer.git](https://github.com/S-O-H-A-M/3-BIT-SYNCHRONOUS-DOWN-COUNTER-WITH-RING-OSCILLATOR-AS-CLOCK ```</br>
+```git clone https://github.com/S-O-H-A-M/3-BIT-SYNCHRONOUS-DOWN-COUNTER-WITH-RING-OSCILLATOR-AS-CLOCK ```</br>
 3. Change directory:</br>
 ```cd counter```</br>
 4. Run ngspice:</br>
@@ -154,7 +154,7 @@ endmodule
   - Load the project</br>
   - Open eeSchema</br>
 ## Author
-• Soham Sen , B.Tech (Electronics and Communication Engineering), Amity University Kolkata - sohamsen25420001@gmail.com
+• Soham Sen , M.Tech (Microelectronics and VLSI), National Institute of Technology Silchar - sohamsen25420001@gmail.com
 ## Acknowlegdements
 1. <a href='https://www.esim.fossee.in/'>FOSSEE Team, IIT Bombay</a></br>
 2. <a href='https://www.makerchip.com/'>MakerChip, RedWood EDA</a></br>
