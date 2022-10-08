@@ -1,5 +1,5 @@
 # Mixed Signal SoC Design Marathon using eSim and SKY130
-# 2x1-Multiplexer
+# 3 BIT SYNCHRONOUS DOWN COUNTER WITH RING OSCILLATOR AS CLOCK
 - [Abstract](#abstract)
 - [Reference Circuit Diagram](#reference-circuit-diagram)
 - [Reference Waveform](#reference-waveform)
