@@ -4,7 +4,6 @@
 - [Reference Circuit Diagram](#reference-circuit-diagram)
 - [Reference Waveform](#reference-waveform)
 - [Circuit Details](#circuit-details)
-- [Truth Table](#truth-table)
 - [Software Used](#software-used)
   * [eSim](#esim)
   * [NgSpice](#ngspice)
@@ -26,25 +25,28 @@
 
 
 ## Abstract
-The paper constitutes the design and analysis of a 2:1 Multiplexer. Multiplexer is a combinational circuit that has maximum of 2n data inputs, ‘n’ selection lines and single output line. One of these data inputs will be connected to the output based on the values of selection lines. Since there are ‘n’ selection lines, there will be 2n possible combinations of zeros and ones. So, each combination will select only one data input. Multiplexer is also called as Mux. The 2:1 Multiplexer has been designed using CMOS.
-## Reference Circuit Diagram
-![image](https://user-images.githubusercontent.com/65547096/156544513-a56eb771-0f57-4460-8687-24f0c9832626.png)
-## Reference Waveform
-![image](https://user-images.githubusercontent.com/65547096/156544570-7c6d072d-c50e-46d3-9477-8fa27022ec93.png)
-## Circuit Details
-The given 2:1 MUX has two inputs(i0,i1), one selection input (sel), and one output line(y). Therefore, it can have only two achievable combinations, i.e., 0,1. When selection input is ‘0’ then input line ‘i1’ is preferred and is directed to the output, y. Similarly, when selection input is ‘1’ then input line ‘i1’ is preferred and is directed to the output, y. CMOS based 2:1 MUX is a build-up of two sections namely, pull up lattice and pull-down lattice. Pull up lattice is known as PMOS, and pull-down lattice is known as NMOS. In this model, the PMOS device is connected to the supply voltage (VDD) and NMOS is connected to the ground (GND). Both PMOS and NMOS substrate is given to the source terminal (given to VDD in case of PMOS and GND in case of NMOS). From the circuit, if both i1 and i2 inputs are high, then both the NMOS transistors will conduct, neither of the PMOS transistors will conduct, and a conductive path will be established between the output and VDD, bringing the output low. If both i1and i2 inputs are low, then neither of the NMOS transistors will conduct, while both PMOS transistors will conduct, establishing a conductive path between the output and VDD, bringing the output high. If either of the i1 or i2 inputs is low, one of the NMOS transistors will not conduct, one of the PMOS transistors will, and a conductive path will be established between the output and VDD, bringing the output high.
-## Truth Table
+The paper constitutes the design and analysis of a 3 bit Down Counter. This circuit uses Ring Oscillator as clock. It mainly focuses on the mixed signal circuit design. In this design, a 3 bit down counter is implemented using Verilog code and ring oscillator is implemented using CMOS logic. As computer system consists of sequential  circuits mostly, it is very important to design sequential     circuits effectively and flawlessly for ensuring least power dissipation and architectural simplicity. Counters are very important segments of sequential circuit system. In this paper we have proposed a design scheme to develop a  down counter with ring oscillator as clock input.
 
-| Sel  | i0 | i1 |y |
-| ------------- | ------------- | ------------- | ------------- | 
-| 0  | 0| 0| 0|
-| 0  | 0| 1| 0|
-| 0  | 1| 0| 1|
-| 0  | 1| 1| 1|
-| 1  | 0| 0| 0|
-| 1  | 0| 1| 1|
-| 1  | 1| 0| 0|
-| 1  | 1| 1| 1|
+## Reference Circuit Diagram
+![image](https://user-images.githubusercontent.com/65547096/194720399-ee3ae0d1-31ce-4c98-880a-5890b867d4ae.png)
+Figure 1(a): 3 bit Synchronous Down Counter
+
+![image](https://user-images.githubusercontent.com/65547096/194720407-08a9f5ca-a4d4-44d9-9c59-508b3a37b720.png)
+Figure 1(b): CMOS Ring Oscillator using 3 inverters
+## Reference Waveform
+![image](https://user-images.githubusercontent.com/65547096/194720442-e615db12-e3d4-4e5b-a980-77693b3d56b7.png)
+
+## Circuit Details
+A Down Counter is an application of shift registers. N number of flipflops are required for N bit counter. For a 3 bit counter, 3 Flipflops are required. It counts from 7 down to 0. Here T flipflop is used. Synchronous counter has one global clock which drives each flipflop so output changes in parallel. CMOS Ring oscillator is the most popular oscillator topology in recent days due to its CMOS technology advantages. In this architecture the last  inverter’s output is connected to the first inverter’s input through a feedback path. It is known as the ring oscillator because of inverters are connected in ring fashion. The number of inverter stages in this oscillator       mainly depends on the frequency which we want to generate from this oscillator.
+Time period of ring oscillator(T)=2*n*Td 
+
+Td=Propagation delay of each inverter 
+
+Frequency of ring oscillator(f)=1/T 
+
+n=Number of inverters
+
+The frequency of oscillation is dependent on the number of stages and delay time of each inverter stage.
 
 ## Software Used
 ### eSim
@@ -66,37 +68,52 @@ https://www.veripool.org/verilator/
 
 ## Circuit Diagram in eSim
 The following is the schematic in eSim:
-![schematic](https://user-images.githubusercontent.com/65547096/156545586-af09b852-7e16-4db4-a572-a8bf164a2350.PNG)
+![WAVEFORM](https://user-images.githubusercontent.com/65547096/194720691-d362d649-472f-4228-b162-8291293ee69e.PNG)
 ## Verilog Code
-![verilog_code](https://user-images.githubusercontent.com/65547096/156546310-1f243d14-6a85-4926-a8d2-27699fa9d426.PNG)
+```
+module sohamsen_synchronous_down_counter(input clk, reset, output [2:0] counter);
+
+reg [2:0] counter_down;
+
+// synchronous down counter
+always @(posedge clk or posedge reset)
+begin
+if(reset)
+ counter_down <= 3'b111;
+else
+ counter_down <= counter_down - 3'b001;
+end 
+assign counter = counter_down;
+endmodule
+
+```
 ## Makerchip
 ```
 \TLV_version 1d: tl-x.org
 \SV
-/* verilator lint_off UNUSED*/  /* verilator lint_off DECLFILENAME*/  /* verilator lint_off BLKSEQ*/  /* verilator lint_off WIDTH*/  /* verilator lint_off SELRANGE*/  /* verilator lint_off PINCONNECTEMPTY*/  /* verilator lint_off DEFPARAM*/  /* verilator lint_off IMPLICIT*/  /* verilator lint_off COMBDLY*/  /* verilator lint_off SYNCASYNCNET*/  /* verilator lint_off UNOPTFLAT */  /* verilator lint_off UNSIGNED*/  /* verilator lint_off CASEINCOMPLETE*/  /* verilator lint_off UNDRIVEN*/  /* verilator lint_off VARHIDDEN*/  /* verilator lint_off CASEX*/  /* verilator lint_off CASEOVERLAP*/  /* verilator lint_off PINMISSING*/  /* verilator lint_off BLKANDNBLK*/  /* verilator lint_off MULTIDRIVEN*/  /* verilator lint_off WIDTHCONCAT*/  /* verilator lint_off ASSIGNDLY*/  /* verilator lint_off MODDUP*/  /* verilator lint_off STMTDLY*/  /* verilator lint_off LITENDIAN*/  /* verilator lint_off INITIALDLY*/  
+/* verilator lint_off UNUSED*/  /* verilator lint_off DECLFILENAME*/  /* verilator lint_off BLKSEQ*/  /* verilator lint_off WIDTH*/  /* verilator lint_off SELRANGE*/  /* verilator lint_off PINCONNECTEMPTY*/  /* verilator lint_off DEFPARAM*/  /* verilator lint_off IMPLICIT*/  /* verilator lint_off COMBDLY*/  /* verilator lint_off SYNCASYNCNET*/  /* verilator lint_off UNOPTFLAT */  /* verilator lint_off UNSIGNED*/  /* verilator lint_off CASEINCOMPLETE*/  /* verilator lint_off UNDRIVEN*/  /* verilator lint_off VARHIDDEN*/  /* verilator lint_off CASEX*/  /* verilator lint_off CASEOVERLAP*/  /* verilator lint_off PINMISSING*/  /* verilator lint_off LATCH*/  /* verilator lint_off BLKANDNBLK*/  /* verilator lint_off MULTIDRIVEN*/  /* verilator lint_off NULLPORT*/  /* verilator lint_off EOFNEWLINE*/  /* verilator lint_off WIDTHCONCAT*/  /* verilator lint_off ASSIGNDLY*/  /* verilator lint_off MODDUP*/  /* verilator lint_off STMTDLY*/  /* verilator lint_off LITENDIAN*/  /* verilator lint_off INITIALDLY*/  /* verilator lint_off */  
 
 //Your Verilog/System Verilog Code Starts Here:
-module sensoham_2to1mux (input i0 , input i1 , input sel , output reg y);
-always @ (*)
+module sohamsen_synchronous_down_counter(input clk, reset, output [3:0] counter);
+
+reg [2:0] counter_down;
+
+// synchronous down counter
+always @(posedge clk or posedge reset)
 begin
-	if(sel)
-		y <= i1;
-	else 
-		y <= i0;
-end
+if(reset)
+ counter_down <= 3'b111;
+else
+ counter_down <= counter_down - 3'b001;
+end 
+assign counter = counter_down;
 endmodule
 
 //Top Module Code Starts here:
 	module top(input logic clk, input logic reset, input logic [31:0] cyc_cnt, output logic passed, output logic failed);
-		logic  i0;//input
-		logic  i1;//input
-		logic  sel;//input
-		logic  y;//output
+		logic  [3:0] counter;//output
 //The $random() can be replaced if user wants to assign values
-		assign i0 = $random();
-		assign i1 = $random();
-		assign sel = $random();
-		sensoham_2to1mux sensoham_2to1mux(.i0(i0), .i1(i1), .sel(sel), .y(y));
+		sohamsen_synchronous_down_counter sohamsen_synchronous_down_counter(.clk(clk), .reset(reset), .counter(counter));
 	
 \TLV
 //Add \TLV here if desired                                     
@@ -106,13 +123,13 @@ endmodule
 
 ```
 ## Makerchip Plots
-![makerchip ghraph_2](https://user-images.githubusercontent.com/65547096/156555274-818b9fdd-9ea2-4903-b648-e82169e1b655.PNG)
+![waveform_makerchip](https://user-images.githubusercontent.com/65547096/194720540-7b30082b-4b8a-4ed2-aa78-af50f856336e.PNG)
 
 ## Netlists
-![netlistcirout](https://user-images.githubusercontent.com/65547096/156550274-6acc7a11-773b-4a18-b7d8-0b707098dc34.PNG)
+![netlist](https://user-images.githubusercontent.com/65547096/194720671-0398077b-8032-4a8b-ada8-5e656f60d975.PNG)
 
 ## NgSpice Plots
-![ngspice](https://user-images.githubusercontent.com/65547096/156550536-bbc115f1-b275-4a3a-8acb-0bffd7342619.PNG)
+![WAVEFORM](https://user-images.githubusercontent.com/65547096/194720682-c89b133d-d11a-438c-ba10-e6b91f4bc583.PNG)
 
 ## Steps to run generate NgVeri Model
 1. Open eSim
@@ -146,6 +163,6 @@ endmodule
 5. Sumanto Kar, eSim Team, FOSSEE
 
 ## References
-1.  Shyam Sankalp Pattnaik. Design of 2 to 1 Multiplexer in eSIM. https://cutt.ly/UAwYMew.
-2.  N. H. E. Weste. Cmos vlsi design: A circuits and systems perspective. https://cutt.ly/InNnZPb.
+1.  CMOS Inverter Ring Oscillator. shorturl.at/flMW7
+2.  Digital Circuits - Counters. shorturl.at/HKV23
 
