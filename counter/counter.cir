@@ -1,0 +1,27 @@
+* C:\Users\Vivobook\AppData\Roaming\SPB_Data\eSim-Workspace\counter\counter.cir
+
+* EESchema Netlist Version 1.1 (Spice format) creation date: 10/08/22 20:22:08
+
+* To exclude a component from the Spice Netlist add [Spice_Netlist_Enabled] user FIELD set to: N
+* To reorder the component spice node sequence add [Spice_Node_Sequence] user FIELD and define sequence: 2,1,0
+
+* Sheet Name: /
+U1  Net-_U1-Pad1_ Net-_U1-Pad2_ Net-_U1-Pad3_ Net-_U1-Pad4_ Net-_U1-Pad5_ sohamsen_synchronous_down_counter		
+U4  Net-_U1-Pad3_ Net-_U1-Pad4_ Net-_U1-Pad5_ A2 A1 A0 dac_bridge_3		
+U2  CLK RST Net-_U1-Pad1_ Net-_U1-Pad2_ adc_bridge_2		
+v1  RST GND pulse		
+U7  A0 plot_v1		
+U6  A1 plot_v1		
+U5  A2 plot_v1		
+U3  CLK plot_v1		
+v2  Net-_SC1-Pad3_ GND DC		
+scmode1  SKY130mode		
+SC2  Net-_SC1-Pad1_ CLK GND GND sky130_fd_pr__nfet_01v8		
+SC4  Net-_SC3-Pad1_ Net-_SC1-Pad1_ GND GND sky130_fd_pr__nfet_01v8		
+SC6  CLK Net-_SC3-Pad1_ GND GND sky130_fd_pr__nfet_01v8		
+SC1  Net-_SC1-Pad1_ CLK Net-_SC1-Pad3_ Net-_SC1-Pad3_ sky130_fd_pr__pfet_01v8		
+SC3  Net-_SC3-Pad1_ Net-_SC1-Pad1_ Net-_SC1-Pad3_ Net-_SC1-Pad3_ sky130_fd_pr__pfet_01v8		
+SC5  CLK Net-_SC3-Pad1_ Net-_SC1-Pad3_ Net-_SC1-Pad3_ sky130_fd_pr__pfet_01v8		
+U8  RST plot_v1		
+
+.end
