@@ -68,7 +68,7 @@ https://www.veripool.org/verilator/
 
 ## Circuit Diagram in eSim
 The following is the schematic in eSim:
-![WAVEFORM](https://user-images.githubusercontent.com/65547096/194720691-d362d649-472f-4228-b162-8291293ee69e.PNG)
+![schematic](https://user-images.githubusercontent.com/65547096/194720747-4855fa73-6304-4240-96fd-4de5315dd627.PNG)
 ## Verilog Code
 ```
 module sohamsen_synchronous_down_counter(input clk, reset, output [2:0] counter);
@@ -143,11 +143,11 @@ endmodule
 ## Steps to run this project
 1. Open a new terminal
 2. Clone this project using the following command:</br>
-```git clone https://github.com/S-O-H-A-M/2x1-Multiplexer.git ```</br>
+```git clone https://github.com/S-O-H-A-M/2x1-Multiplexer.git](https://github.com/S-O-H-A-M/3-BIT-SYNCHRONOUS-DOWN-COUNTER-WITH-RING-OSCILLATOR-AS-CLOCK ```</br>
 3. Change directory:</br>
-```cd eSim_project_files/multiplexer```</br>
+```cd counter```</br>
 4. Run ngspice:</br>
-```ngspice Multiplexer.cir.out```</br>
+```ngspice counter.cir.out```</br>
 5. To run the project in eSim:
 
   - Run eSim</br>
