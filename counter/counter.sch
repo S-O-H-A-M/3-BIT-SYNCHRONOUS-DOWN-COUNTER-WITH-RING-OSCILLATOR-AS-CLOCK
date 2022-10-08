@@ -218,7 +218,7 @@ Wire Wire Line
 Wire Wire Line
 	3600 4650 3600 4450
 Wire Wire Line
-	3600 4450 3950 4450
+	3200 4450 3950 4450
 Wire Wire Line
 	2550 2100 2550 2400
 Wire Wire Line
@@ -416,4 +416,19 @@ Wire Wire Line
 Wire Wire Line
 	4250 1350 4000 1350
 Connection ~ 4000 1350
+$Comp
+L plot_v1 U8
+U 1 1 63419ED4
+P 3400 4650
+F 0 "U8" H 3400 5150 60  0000 C CNN
+F 1 "plot_v1" H 3600 5000 60  0000 C CNN
+F 2 "" H 3400 4650 60  0000 C CNN
+F 3 "" H 3400 4650 60  0000 C CNN
+	1    3400 4650
+	1    0    0    -1  
+$EndComp
+Connection ~ 3600 4450
+Text GLabel 3200 4450 0    60   Input ~ 0
+RST
+Connection ~ 3400 4450
 $EndSCHEMATC
